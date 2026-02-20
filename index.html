@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandName| Λογιστικό & Φοροτεχνικό Γραφείο</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0f2027;
+            --primary-blue: #203a43;
+            --accent-gold: #c5a059;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--primary-dark);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo { color: var(--text-light); font-size: 1.5rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .logo span { color: var(--accent-gold); }
+
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; transition: color 0.3s; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--accent-gold); }
+
+        /* Language Switcher Style */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 0.8rem;
+        }
+        .lang-btn:hover { background: var(--accent-gold); color: var(--primary-dark); }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; color: var(--text-light); margin-top: 60px;
+        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; font-weight: 300; }
+
+        /* --- SERVICES --- */
+        .services-section { padding: 100px 5%; text-align: center; }
+        .section-title { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 50px; position: relative; display: inline-block; }
+        .section-title::after { content: ''; width: 60px; height: 3px; background-color: var(--accent-gold); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .service-card { background: white; padding: 40px 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: all 0.4s ease; border-bottom: 4px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); border-bottom: 4px solid var(--accent-gold); }
+        .service-icon { font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px; }
+
+        /* --- CONTACT --- */
+        .contact-section { background-color: var(--primary-dark); color: white; padding: 80px 5%; text-align: center; }
+        .contact-form { max-width: 600px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 20px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border-radius: 5px; border: none; background: rgba(255,255,255,0.1); color: white; }
+        .btn { padding: 15px 30px; background-color: var(--accent-gold); color: var(--primary-dark); font-weight: 700; border-radius: 5px; border: none; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        .btn:hover { background-color: #d4b572; transform: translateY(-3px); }
+
+        footer { background-color: #081115; color: white; text-align: center; padding: 30px 5%; }
+        .social-links a { color: white; font-size: 1.5rem; margin: 0 10px; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent-gold); }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) { .nav-links { display: none; } .hero h1 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">BrandName<span>.</span></div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#home" data-key="nav-home">Αρχική</a></li>
+                <li><a href="#services" data-key="nav-services">Υπηρεσίες</a></li>
+                <li><a href="#contact" data-key="nav-contact">Επικοινωνία</a></li>
+            </ul>
+            <button class="lang-btn" onclick="toggleLanguage()">EN</button>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <h1 data-key="hero-title">Οικονομική Σιγουριά.<br>Στρατηγική Ανάπτυξη.</h1>
+        <p data-key="hero-sub">Ολοκληρωμένες Λογιστικές και Φοροτεχνικές Υπηρεσίες προσαρμοσμένες στις ανάγκες της σύγχρονης επιχείρησης.</p>
+        <a href="#contact" class="btn" data-key="hero-btn">Κλειστε Ραντεβου</a>
+    </header>
+
+    <section id="services" class="services-section">
+        <h2 class="section-title fade-in" data-key="serv-title">Οι Υπηρεσίες μας</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <i class="fas fa-book service-icon"></i>
+                <h3 data-key="s1-t">Τήρηση Βιβλίων</h3>
+                <p data-key="s1-d">Πλήρης και υπεύθυνη λογιστική παρακολούθηση βιβλίων με συνέπεια και ακρίβεια.</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-file-invoice-dollar service-icon"></i>
+                <h3 data-key="s2-t">Φορολογικές Δηλώσεις</h3>
+                <p data-key="s2-d">Έγκαιρη υποβολή δηλώσεων φυσικών και νομικών προσώπων, μεγιστοποιώντας τα οφέλη σας.</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-users service-icon"></i>
+                <h3 data-key="s3-t">Μισθοδοσία</h3>
+                <p data-key="s3-d">Διαχείριση μισθοδοσίας, συμβάσεων και πλήρης εκπροσώπηση σε ΕΡΓΑΝΗ και ΕΦΚΑ.</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-building service-icon"></i>
+                <h3 data-key="s4-t">Συστάσεις Εταιρειών</h3>
+                <p data-key="s4-d">Καθοδήγηση και διεκπεραίωση για ενάρξεις, μεταβολές και λύσεις εταιρειών μέσω ΓΕΜΗ.</p>
+            </div>
+            <div class="service-card fade-in">
+                <i class="fas fa-chart-line service-icon"></i>
+                <h3 data-key="s5-t">Συμβουλευτική</h3>
+                <p data-key="s5-d">Οικονομικός προγραμματισμός και στρατηγικές συμβουλές για τη βιώσιμη ανάπτυξη σας.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title fade-in" data-key="cont-title">Επικοινωνήστε Μαζί μας</h2>
+        <form class="contact-form fade-in" id="demoForm">
+            <input type="text" id="form-name" placeholder="Ονοματεπώνυμο" required>
+            <input type="email" id="form-email" placeholder="Email" required>
+            <textarea id="form-msg" placeholder="Το μήνυμά σας..." required></textarea>
+            <button type="submit" class="btn" data-key="cont-btn">Αποστολη</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="footer-text">&copy; 2026 BrandName Accounting Office.</p>
+    </footer>
+
+    <script>
+        // TRANSLATIONS DATA
+        const translations = {
+            'el': {
+                'nav-home': 'Αρχική', 'nav-services': 'Υπηρεσίες', 'nav-contact': 'Επικοινωνία',
+                'hero-title': 'Οικονομική Σιγουριά.\nΣτρατηγική Ανάπτυξη.',
+                'hero-sub': 'Ολοκληρωμένες Λογιστικές και Φοροτεχνικές Υπηρεσίες προσαρμοσμένες στις ανάγκες της σύγχρονης επιχείρησης.',
+                'hero-btn': 'Κλείστε Ραντεβού', 'serv-title': 'Οι Υπηρεσίες μας',
+                's1-t': 'Τήρηση Βιβλίων', 's1-d': 'Πλήρης και υπεύθυνη λογιστική παρακολούθηση βιβλίων με συνέπεια και ακρίβεια.',
+                's2-t': 'Φορολογικές Δηλώσεις', 's2-d': 'Έγκαιρη υποβολή δηλώσεων φυσικών και νομικών προσώπων, μεγιστοποιώντας τα οφέλη σας.',
+                's3-t': 'Μισθοδοσία', 's3-d': 'Διαχείριση μισθοδοσίας, συμβάσεων και πλήρης εκπροσώπηση σε ΕΡΓΑΝΗ και ΕΦΚΑ.',
+                's4-t': 'Συστάσεις Εταιρειών', 's4-d': 'Καθοδήγηση και διεκπεραίωση για ενάρξεις, μεταβολές και λύσεις εταιρειών μέσω ΓΕΜΗ.',
+                's5-t': 'Συμβουλευτική', 's5-d': 'Οικονομικός προγραμματισμός και στρατηγικές συμβουλές για τη βιώσιμη ανάπτυξη σας.',
+                'cont-title': 'Επικοινωνήστε Μαζί μας', 'cont-btn': 'Αποστολή',
+                'placeholder-name': 'Ονοματεπώνυμο', 'placeholder-msg': 'Το μήνυμά σας...'
+            },
+            'en': {
+                'nav-home': 'Home', 'nav-services': 'Services', 'nav-contact': 'Contact',
+                'hero-title': 'Financial Security.\nStrategic Growth.',
+                'hero-sub': 'Comprehensive accounting and tax services tailored to the needs of modern businesses.',
+                'hero-btn': 'Book an Appointment', 'serv-title': 'Our Services',
+                's1-t': 'Bookkeeping', 's1-d': 'Full and responsible accounting monitoring of books with consistency and accuracy.',
+                's2-t': 'Tax Returns', 's2-d': 'Timely submission of tax returns for individuals and legal entities, maximizing your benefits.',
+                's3-t': 'Payroll Services', 's3-d': 'Management of payroll, contracts, and full representation in labor authorities.',
+                's4-t': 'Company Formation', 's4-d': 'Guidance and processing for company start-ups, changes, and dissolutions.',
+                's5-t': 'Consulting', 's5-d': 'Financial planning and strategic advice for the sustainable growth of your business.',
+                'cont-title': 'Contact Us', 'cont-btn': 'Send Message',
+                'placeholder-name': 'Full Name', 'placeholder-msg': 'Your message...'
+            }
+        };
+
+        let currentLang = 'el';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'el' ? 'en' : 'el';
+            document.querySelector('.lang-btn').innerText = currentLang === 'el' ? 'EN' : 'EL';
+            
+            // Update Text Content
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                elem.innerText = translations[currentLang][key];
+            });
+
+            // Update Form Placeholders
+            document.getElementById('form-name').placeholder = translations[currentLang]['placeholder-name'];
+            document.getElementById('form-msg').placeholder = translations[currentLang]['placeholder-msg'];
+        }
+
+        // Animations on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('appear');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
